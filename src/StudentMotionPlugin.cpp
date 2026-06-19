@@ -132,6 +132,8 @@ Pose computeState0_Walk(double t) {
     const double rightForwardY = 0.04 + (std::max(0.0, armPhase) * 0.18);
     p.values[0][1] += leftForwardY;
     p.values[1][1] += rightForwardY;
+    p.values[2][2] = 0.08 + (std::max(0.0, -armPhase) * 0.22);
+    p.values[3][2] = 0.08 + (std::max(0.0, armPhase) * 0.22);
     return p;
 }
 
@@ -159,6 +161,8 @@ Pose computeState1_Run(double t) {
     const double rightForwardY = 0.08 + (std::max(0.0, armPhase) * 0.34);
     p.values[0][1] += leftForwardY;
     p.values[1][1] += rightForwardY;
+    p.values[2][2] = 0.18 + (std::max(0.0, -armPhase) * 0.35);
+    p.values[3][2] = 0.18 + (std::max(0.0, armPhase) * 0.35);
     return p;
 }
 
@@ -172,7 +176,7 @@ Pose computeState2_Jump(double t) {
     const double ankle       = -0.45 * compression + 0.18 * extension;
     const double armTakeoff  =  extension;
     const double armForwardY =  0.45 * armTakeoff;
-    const double elbow       =  0.05 + (0.10 * armTakeoff);
+    const double elbow       =  0.10 + (0.25 * compression) + (0.15 * armTakeoff);
     applyBaseArms(p, elbow);
     p.values[4][2] = hip;
     p.values[5][2] = hip;
@@ -188,13 +192,16 @@ Pose computeState2_Jump(double t) {
 Pose computeState3_Crouch(double t) {
     Pose p;
     applyBaseArms(p, 0.05);
-    double pulse = std::sin(t * 1.5) * 0.05;
+    double pulse = std::sin(t * 1.5) * 0.10;
+    double elbowPulse = 0.5 + (0.5 * std::sin((t * 1.5) + kPi));
     p.values[4][2] = 1.45 + pulse;
     p.values[5][2] = 1.45 + pulse;
     p.values[6][2] = -1.45 - pulse;
     p.values[7][2] = -1.45 - pulse;
     p.values[8][2] = -0.15;
     p.values[9][2] = -0.15;
+    p.values[2][2] = 0.16 + (elbowPulse * 0.12);
+    p.values[3][2] = 0.16 + (elbowPulse * 0.12);
     return p;
 }
 

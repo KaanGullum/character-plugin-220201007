@@ -48,23 +48,25 @@ Each state drives these ten major joints:
 
 The evaluator writes parent-relative Euler joint angles in radians to `AnimationModelOutput`. Values are clamped before output, and `clearExistingJointOverrides` is set so stale poses do not accumulate between frames.
 
+Elbow and knee angles are intentionally varied over time. Knees carry the lower-body gait, jump compression, and crouch depth changes. Elbows change with arm swing, jump takeoff, and crouch balance so the upper body is not held as a static pose.
+
 ## Motion Model
 
 ### Walk
 
-The walk state is an in-place gait. The left and right hips oscillate in opposite phase. Knees bend only during the backward/stance part of the leg cycle, and ankles counter the knee motion. Arms swing opposite the legs to make the gait readable.
+The walk state is an in-place gait. The left and right hips oscillate in opposite phase. Knees bend only during the backward/stance part of the leg cycle, and ankles counter the knee motion. Shoulders and elbows swing opposite the legs to make the gait readable.
 
 ### Run
 
-The run state uses the same structure as walk but with higher frequency, larger hip amplitude, deeper knee bends, and stronger arm motion. This makes the state visibly distinct from walking while staying within stable joint limits.
+The run state uses the same structure as walk but with higher frequency, larger hip amplitude, deeper knee bends, and stronger shoulder/elbow motion. This makes the state visibly distinct from walking while staying within stable joint limits.
 
 ### Jump
 
-The jump state uses a repeating compression and extension cycle. During compression both hips and knees bend together. During extension the legs straighten and the arms lift forward, creating a recognizable two-foot jump motion without moving the root entity.
+The jump state uses a repeating compression and extension cycle. During compression both hips and knees bend together and the elbows bend with the preparation. During extension the legs straighten and the arms lift forward, creating a recognizable two-foot jump motion without moving the root entity.
 
 ### Crouch
 
-The crouch state holds a deep squat with small breathing-like variation. Hips and knees bend together while the ankles compensate. Arms remain controlled so the pose reads as balanced instead of random limb motion.
+The crouch state holds a deep squat with small breathing-like variation. Hips and knees bend together while the ankles compensate. Elbows also pulse slightly with the balance pose so the upper body remains active but controlled.
 
 ## Viewer Mode
 

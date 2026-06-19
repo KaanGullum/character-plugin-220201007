@@ -6,10 +6,10 @@ This project builds an N8RO ASTSIM simulation plugin for the Nathan human animat
 
 | State | Key | Script code | Description |
 |-------|-----|-------------|-------------|
-| Walk | `1` | `Idle Neutral` | In-place walking gait with alternating hips, knees, ankles, and arm swing |
-| Run | `2` | `Idle Breathing` | Faster gait with larger leg motion and stronger arm swing |
-| Jump | `3` | `Idle Shake` | Two-foot jump cycle with compression, extension, and arm lift |
-| Crouch | `4` | `Idle Stopped` | Deep squat pose with coordinated hip, knee, ankle, and arm balance |
+| Walk | `1` | `Idle Neutral` | In-place walking gait with changing hip, knee, ankle, shoulder, and elbow angles |
+| Run | `2` | `Idle Breathing` | Faster gait with larger knee motion and stronger coordinated elbow/arm swing |
+| Jump | `3` | `Idle Shake` | Two-foot jump cycle with knee compression/extension and elbow-supported arm lift |
+| Crouch | `4` | `Idle Stopped` | Deep squat pose with coordinated hip, knee, ankle, and elbow balance motion |
 
 Press `0` to release manual keyboard override and follow the scenario script again.
 
@@ -18,6 +18,7 @@ Press `0` to release manual keyboard override and follow the scenario script aga
 - Registers animation evaluators on `animationModelNathanHuman`.
 - Outputs parent-relative joint angles in radians.
 - Overrides exactly ten joints: shoulders, elbows, hips, knees, and ankles.
+- Varies both elbow and knee angles over time as part of the motion states.
 - Uses kinematic joint control only; it does not compute forces, torques, rigid-body dynamics, or contact physics.
 - Clears previous joint overrides before writing the current pose, so each frame is deterministic.
 
