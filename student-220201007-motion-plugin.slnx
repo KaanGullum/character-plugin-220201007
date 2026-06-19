@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="student-220201007-motion-plugin.vcxproj" Id="58f70919-e606-4e0e-837d-220201007001" />
+</Solution>

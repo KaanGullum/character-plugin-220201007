@@ -1,0 +1,10 @@
+.vs/
+x64/
+bin/deploy-test/
+bin/release/*.exp
+bin/release/*.lib
+bin/release/*.pdb
+*.user
+*.suo
+*.VC.db
+*.opendb
