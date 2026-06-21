@@ -117,8 +117,8 @@ Pose computeState0_Walk(double t) {
     applyBaseArms(p, 0.05);
     const double leftHip    =  std::sin(5.0 * t) * 0.45;
     const double rightHip   = -leftHip;
-    const double leftKnee   = (leftHip  < 0.0) ?  leftHip  * 0.50 : 0.0;
-    const double rightKnee  = (rightHip < 0.0) ?  rightHip * 0.50 : 0.0;
+    const double leftKnee   = (leftHip  > 0.0) ? -leftHip  * 0.75 : -0.05;
+    const double rightKnee  = (rightHip > 0.0) ? -rightHip * 0.75 : -0.05;
     const double leftAnkle  = -leftKnee  * 0.30;
     const double rightAnkle = -rightKnee * 0.30;
     p.values[4][2] = leftHip;
@@ -132,8 +132,8 @@ Pose computeState0_Walk(double t) {
     const double rightForwardY = 0.04 + (std::max(0.0, armPhase) * 0.18);
     p.values[0][1] += leftForwardY;
     p.values[1][1] += rightForwardY;
-    p.values[2][0] = 0.08 + (std::max(0.0, -armPhase) * 0.22);
-    p.values[3][0] = 0.08 + (std::max(0.0, armPhase) * 0.22);
+    p.values[2][0] = 0.25 + (std::max(0.0, -armPhase) * 0.30);
+    p.values[3][0] = 0.25 + (std::max(0.0, armPhase) * 0.30);
     return p;
 }
 
@@ -142,8 +142,8 @@ Pose computeState1_Run(double t) {
     applyBaseArms(p, 0.20);
     const double leftHip    =  std::sin(10.0 * t) * 0.70;
     const double rightHip   = -leftHip;
-    const double leftKnee   = (leftHip  < 0.0) ?  leftHip  * 0.75 : 0.0;
-    const double rightKnee  = (rightHip < 0.0) ?  rightHip * 0.75 : 0.0;
+    const double leftKnee   = (leftHip  > 0.0) ? -leftHip  * 1.15 : -0.10;
+    const double rightKnee  = (rightHip > 0.0) ? -rightHip * 1.15 : -0.10;
     const double leftAnkle  = -leftKnee  * 0.40;
     const double rightAnkle = -rightKnee * 0.40;
     p.values[4][2] = leftHip;
@@ -161,8 +161,8 @@ Pose computeState1_Run(double t) {
     const double rightForwardY = 0.08 + (std::max(0.0, armPhase) * 0.34);
     p.values[0][1] += leftForwardY;
     p.values[1][1] += rightForwardY;
-    p.values[2][0] = 0.18 + (std::max(0.0, -armPhase) * 0.35);
-    p.values[3][0] = 0.18 + (std::max(0.0, armPhase) * 0.35);
+    p.values[2][0] = 0.90 + (std::max(0.0, -armPhase) * 0.20);
+    p.values[3][0] = 0.90 + (std::max(0.0, armPhase) * 0.20);
     return p;
 }
 
