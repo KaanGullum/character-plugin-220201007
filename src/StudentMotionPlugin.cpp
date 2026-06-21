@@ -108,8 +108,8 @@ struct Pose {
 void applyBaseArms(Pose& p, double elbowBendZ) {
     p.values[0][0] = 1.57; p.values[0][1] = 1.57; p.values[0][2] = 1.57;
     p.values[1][0] = 1.57; p.values[1][1] = 1.57; p.values[1][2] = 1.57;
-    p.values[2][2] = elbowBendZ;
-    p.values[3][2] = elbowBendZ;
+    p.values[2][0] = elbowBendZ;
+    p.values[3][0] = elbowBendZ;
 }
 
 Pose computeState0_Walk(double t) {
@@ -132,8 +132,8 @@ Pose computeState0_Walk(double t) {
     const double rightForwardY = 0.04 + (std::max(0.0, armPhase) * 0.18);
     p.values[0][1] += leftForwardY;
     p.values[1][1] += rightForwardY;
-    p.values[2][2] = 0.08 + (std::max(0.0, -armPhase) * 0.22);
-    p.values[3][2] = 0.08 + (std::max(0.0, armPhase) * 0.22);
+    p.values[2][0] = 0.08 + (std::max(0.0, -armPhase) * 0.22);
+    p.values[3][0] = 0.08 + (std::max(0.0, armPhase) * 0.22);
     return p;
 }
 
@@ -161,8 +161,8 @@ Pose computeState1_Run(double t) {
     const double rightForwardY = 0.08 + (std::max(0.0, armPhase) * 0.34);
     p.values[0][1] += leftForwardY;
     p.values[1][1] += rightForwardY;
-    p.values[2][2] = 0.18 + (std::max(0.0, -armPhase) * 0.35);
-    p.values[3][2] = 0.18 + (std::max(0.0, armPhase) * 0.35);
+    p.values[2][0] = 0.18 + (std::max(0.0, -armPhase) * 0.35);
+    p.values[3][0] = 0.18 + (std::max(0.0, armPhase) * 0.35);
     return p;
 }
 
@@ -200,8 +200,8 @@ Pose computeState3_Crouch(double t) {
     p.values[7][2] = -1.45 - pulse;
     p.values[8][2] = -0.15;
     p.values[9][2] = -0.15;
-    p.values[2][2] = 0.16 + (elbowPulse * 0.12);
-    p.values[3][2] = 0.16 + (elbowPulse * 0.12);
+    p.values[2][0] = 0.16 + (elbowPulse * 0.12);
+    p.values[3][0] = 0.16 + (elbowPulse * 0.12);
     return p;
 }
 

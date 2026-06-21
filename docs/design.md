@@ -48,7 +48,7 @@ Each state drives these ten major joints:
 
 The evaluator writes parent-relative Euler joint angles in radians to `AnimationModelOutput`. Values are clamped before output, and `clearExistingJointOverrides` is set so stale poses do not accumulate between frames.
 
-Elbow and knee angles are intentionally varied over time. Knees carry the lower-body gait, jump compression, and crouch depth changes. Elbows change with arm swing, jump takeoff, and crouch balance so the upper body is not held as a static pose.
+Elbow and knee angles are intentionally varied over time. Knees carry the lower-body gait, jump compression, and crouch depth changes on the leg hinge axis. Elbows use the Nathan model's flexion axis and change with arm swing, jump takeoff, and crouch balance so the upper body is not held as a static pose.
 
 ## Motion Model
 
